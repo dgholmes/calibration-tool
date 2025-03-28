@@ -1,0 +1,26 @@
+<mavlink>
+    <messages>
+        <message id="180" name="MONITORING">
+            <description>monitoring</description>
+            <field type="uint16_t" name="swarm_id">Swarm id for GCS</field>
+            <field type="uint32_t" name="tow">Time Of Week</field>
+            <field type="float" name="pos_x">current position x</field>
+            <field type="float" name="pos_y">current position y</field>
+            <field type="float" name="pos_z">current position z</field>
+            <field type="float" name="head">current heading</field>
+            <field type="float" name="roll">Roll</field>
+            <field type="float" name="pitch">Pitch</field>
+            <field type="uint32_t" name="status1">status #1</field>
+            <field type="uint32_t" name="status2">status #2 (RESERVED)</field>
+            <field type="uint8_t" name="rtk_nbase">the number of base satellite</field>
+            <field type="uint8_t" name="rtk_nrover">the number of rover satellite</field>
+            <field type="uint8_t" name="battery">Battery (%)</field>
+            <field type="uint8_t" name="r">red value (0~256)</field>
+            <field type="uint8_t" name="g">green value (0~256)</field>
+            <field type="uint8_t" name="b">blue value (0~256)</field>
+            <field type="float" name="rtk_n">Rtk Baseline North coordinate</field>
+            <field type="float" name="rtk_e">Rtk Baseline East coordinate</field>
+            <field type="float" name="rtk_d">Rtk Baseline Down coordinate</field>
+        </message>
+    </messages>
+</mavlink>

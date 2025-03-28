@@ -1,8 +1,8 @@
 from pymavlink import mavutil
 
 # Start a connection listening on a UDP port
-# connected_drone = mavutil.mavlink_connection('udpin:localhost:14540')
-connected_drone = mavutil.mavlink_connection('COM5', 9600)
+connected_drone = mavutil.mavlink_connection('udpin:10.42.0.4:9750')
+# connected_drone = mavutil.mavlink_connection('COM5', 9600)
 
 # Wait for the first heartbeat
 #   This sets the system and component ID of remote system for the link
@@ -39,6 +39,7 @@ def get_sensor_heath():
         # print(sys_status)
         sensors_health = sys_status.onboard_control_sensors_health
         print(bin(sys_status.onboard_control_sensors_health))
+
         print(f"3D_GYRO is {get_status(sensors_health, MAV_SYS_STATUS_SENSOR_3D_GYRO)}")
         print(f"3D_ACCEL is {get_status(sensors_health, MAV_SYS_STATUS_SENSOR_3D_ACCEL)}")
         print(f"3D_MAG is {get_status(sensors_health, MAV_SYS_STATUS_SENSOR_3D_MAG)}")
@@ -94,7 +95,7 @@ def get_sensor_status():
 
 
 
-def mag_cal():
+def level_cal():
     global ack_msg
     try:
         connected_drone.mav.command_long_send(connected_drone.target_system, connected_drone.target_component,
@@ -102,13 +103,16 @@ def mag_cal():
                                               0, 0, 0, 0, 2, 0, 0)
         ack_msg = connected_drone.recv_match(type='COMMAND_ACK', blocking=True)
         if ack_msg.result == 0:
-            print("Armed successfully!")
+            print("Level calibration Successful!")
         else:
-            print(f"Arming failed: {ack_msg.result}")
+            print(f"Level calibration failed: {ack_msg.result}")
+
     except Exception as e:
-        print(f"Error sending arm command: {e}")
+        print(f"Error sending Level calibration command: {e}")
     finally:
         print(ack_msg)
 
 
-mag_cal()
+# level_cal()
+get_messages()
+# get_sensor_heath()
